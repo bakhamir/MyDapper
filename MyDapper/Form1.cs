@@ -21,10 +21,6 @@ namespace MyDapper
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -35,32 +31,23 @@ namespace MyDapper
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
             using (var db = new SqlConnection(ConfigurationManager.AppSettings["db"]))
             {
                 DynamicParameters p = new DynamicParameters();
-                p.Add("id", 0);
+                p.Add("id", 7);
                 p.Add("last_name", "test");
                 p.Add("category_id", 2);
                 p.Add("IIN", "111111111");
-                p.Add("idout",dbType:DbType.Int32,direction:ParameterDirection.Output );
-  
-                var result = db.ExecuteScalar<string>("pUsers2",p, commandType: CommandType.StoredProcedure);
+                p.Add("idout", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                var result = db.ExecuteScalar<string>("pUsers2", p, commandType: CommandType.StoredProcedure);
                 MessageBox.Show(result);
-                dgview.DataSource = db.Query<Users>("pUsers", new { id = TbFind.Text == "" ? null : TbFind.Text },commandType : CommandType.StoredProcedure );
+                dgview.DataSource = db.Query<Users>("pUsers", new { id = TbFind.Text == "" ? null : TbFind.Text }, commandType: CommandType.StoredProcedure);
             }
         }
 
-        private void dgview_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -68,18 +55,20 @@ namespace MyDapper
             {
                 Users user = new Users()
                 {
-                    Id = 0,
+                    Id = 3,
                     IIN = "123",
                     last_name = "test666",
                     category_id = 1
                 };
                 DynamicParameters p = new DynamicParameters(user);
                 p.Add("id_out", dbType: DbType.Int32, direction: ParameterDirection.Output);
-                var result = db.ExecuteScalar<string>("pUsers;2", p, commandType: CommandType.StoredProcedure);
+                var result = db.ExecuteScalar<string>("pUsers3", p, commandType: CommandType.StoredProcedure);
                 dgview.DataSource = db.Query<Users>("[dbo].[pUsers]", new { id = TbFind.Text == "" ? null : TbFind.Text }, commandType: CommandType.StoredProcedure);
                 MessageBox.Show(result);
                 MessageBox.Show("new id = " + p.Get<int>("id_out").ToString());
             }
         }
+
+
     }
 }

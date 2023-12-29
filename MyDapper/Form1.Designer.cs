@@ -78,7 +78,7 @@
             this.label1.Size = new System.Drawing.Size(45, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "НАЙТИ";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+
             // 
             // dgview
             // 
@@ -91,7 +91,7 @@
             this.dgview.ReadOnly = true;
             this.dgview.Size = new System.Drawing.Size(800, 300);
             this.dgview.TabIndex = 1;
-            this.dgview.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgview_CellContentClick);
+
             // 
             // button2
             // 
@@ -122,7 +122,6 @@
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgview)).EndInit();
